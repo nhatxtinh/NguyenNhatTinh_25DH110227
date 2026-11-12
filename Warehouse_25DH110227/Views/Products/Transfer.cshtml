@@ -1,0 +1,11 @@
+﻿@model Warehouse_25DH110227.Models.TransferForm
+@{ ViewBag.Title = "Điều chuyển hàng"; }
+<p>Chọn hai sản phẩm khác nhau, cùng danh mục.</p>
+@Html.ValidationSummary(false)
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+<label>Sản phẩm nguồn A</label>@Html.DropDownListFor(m => m.SourceID, (IEnumerable<SelectListItem>)ViewBag.Products, "-- Chọn nguồn --")
+<label>Sản phẩm đích B</label>@Html.DropDownListFor(m => m.DestinationID, (IEnumerable<SelectListItem>)ViewBag.Products, "-- Chọn đích --")
+<label>Số lượng chuyển</label>@Html.TextBoxFor(m => m.Amount)
+<button type="submit">Điều chuyển</button>
+}

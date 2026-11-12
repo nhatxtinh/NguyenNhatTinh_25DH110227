@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:Schema xmlns:ns0="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:ns1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Namespace="WarehouseModel" Alias="Self">
+<ns0:EntityType Name="Product"><ns0:Key><ns0:PropertyRef Name="ProductID" /></ns0:Key><ns0:Property Name="ProductID" Type="Int32" Nullable="false" ns1:StoreGeneratedPattern="Identity" />
+<ns0:Property Name="ProductName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+<ns0:Property Name="Category" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+<ns0:Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+<ns0:Property Name="Quantity" Type="Int32" Nullable="false" /></ns0:EntityType>
+<ns0:EntityContainer Name="WarehouseEntities" ns1:LazyLoadingEnabled="true"><ns0:EntitySet Name="Products" EntityType="Self.Product" /></ns0:EntityContainer>
+</ns0:Schema>

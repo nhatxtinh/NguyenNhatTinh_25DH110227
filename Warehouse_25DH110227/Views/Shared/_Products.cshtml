@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Warehouse_25DH110227.Models.Product>
+<table><thead><tr><th>Mã</th><th>ProductName</th><th>Category</th><th>Price</th><th>Quantity</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>
+@foreach (var p in Model) {
+<tr><td>@p.ProductID</td><td>@p.ProductName</td><td>@p.Category</td><td>@p.Price.ToString("N2")</td><td>@p.Quantity</td>
+<td class="@(p.Quantity == 0 ? "out" : p.Quantity < 5 ? "low" : "ok")">@(p.Quantity == 0 ? "Hết hàng" : p.Quantity < 5 ? "Sắp hết hàng" : "Còn hàng")</td>
+<td>@Html.ActionLink("Xóa", "Delete", "Products", new { id = p.ProductID }, null)</td></tr>
+}
+</tbody></table>
+@if (!Model.Any()) { <p>Không có sản phẩm phù hợp.</p> }

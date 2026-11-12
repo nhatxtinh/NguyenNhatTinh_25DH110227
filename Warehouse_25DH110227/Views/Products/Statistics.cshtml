@@ -1,0 +1,7 @@
+﻿@model Warehouse_25DH110227.Models.StatisticsViewModel
+@{ ViewBag.Title = "Thống kê tồn kho"; }
+<table><tr><th>Chỉ tiêu</th><th>Kết quả</th></tr>
+<tr><td>Tổng số sản phẩm</td><td>@Model.ProductCount</td></tr>
+<tr><td>Tổng số đơn vị trong kho</td><td>@Model.TotalQuantity</td></tr>
+<tr><td>Số sản phẩm sắp hết (1–4)</td><td>@Model.LowStockCount</td></tr></table>
+<p>@Html.ActionLink("Tải lại thống kê", "Statistics")</p>

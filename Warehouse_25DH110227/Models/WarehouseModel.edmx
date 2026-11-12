@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Runtime><edmx:StorageModels>
+<Schema Namespace="WarehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<EntityType Name="Products"><Key><PropertyRef Name="ProductID" /></Key><Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+<Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+<Property Name="Category" Type="nvarchar" MaxLength="100" Nullable="false" />
+<Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+<Property Name="Quantity" Type="int" Nullable="false" /></EntityType>
+<EntityContainer Name="WarehouseModelStoreContainer"><EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" /></EntityContainer>
+</Schema></edmx:StorageModels><edmx:ConceptualModels>
+<Schema Namespace="WarehouseModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+<EntityType Name="Product"><Key><PropertyRef Name="ProductID" /></Key><Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+<Property Name="ProductName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+<Property Name="Category" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+<Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+<Property Name="Quantity" Type="Int32" Nullable="false" /></EntityType>
+<EntityContainer Name="WarehouseEntities" annotation:LazyLoadingEnabled="true"><EntitySet Name="Products" EntityType="Self.Product" /></EntityContainer>
+</Schema></edmx:ConceptualModels><edmx:Mappings>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs"><EntityContainerMapping StorageEntityContainer="WarehouseModelStoreContainer" CdmEntityContainer="WarehouseEntities"><EntitySetMapping Name="Products"><EntityTypeMapping TypeName="WarehouseModel.Product"><MappingFragment StoreEntitySet="Products"><ScalarProperty Name="ProductID" ColumnName="ProductID" /><ScalarProperty Name="ProductName" ColumnName="ProductName" /><ScalarProperty Name="Category" ColumnName="Category" /><ScalarProperty Name="Price" ColumnName="Price" /><ScalarProperty Name="Quantity" ColumnName="Quantity" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping></Mapping>
+</edmx:Mappings></edmx:Runtime><edmx:Designer><edmx:Connection><edmx:DesignerInfoPropertySet><edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" /></edmx:DesignerInfoPropertySet></edmx:Connection><edmx:Options><edmx:DesignerInfoPropertySet><edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" /></edmx:DesignerInfoPropertySet></edmx:Options><edmx:Diagrams /></edmx:Designer></edmx:Edmx>

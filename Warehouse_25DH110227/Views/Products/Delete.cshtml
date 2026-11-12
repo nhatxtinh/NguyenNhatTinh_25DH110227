@@ -1,0 +1,11 @@
+﻿@model Warehouse_25DH110227.Models.Product
+@{ ViewBag.Title = "Xác nhận xóa sản phẩm"; }
+@Html.ValidationSummary(false)
+<p>Mã: @Model.ProductID — @Model.ProductName</p><p>Tồn kho: @Model.Quantity</p>
+@if (Model.Quantity > 0) { <p class="validation-summary-errors">Không thể xóa sản phẩm còn hàng.</p> }
+else { <p>Bạn có chắc muốn xóa sản phẩm hết hàng này?</p> }
+@using (Html.BeginForm("Delete", "Products", new { id = Model.ProductID }, FormMethod.Post, null)) {
+@Html.AntiForgeryToken()
+<button type="submit">Xác nhận xóa</button>
+@Html.ActionLink("Hủy", "Index")
+}

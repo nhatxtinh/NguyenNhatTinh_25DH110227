@@ -1,0 +1,12 @@
+﻿@model Warehouse_25DH110227.Models.FilterForm
+@{ ViewBag.Title = "Lọc và sắp xếp tồn kho"; }
+@Html.ValidationSummary(false)
+@using (Html.BeginForm("Filter", "Products", FormMethod.Get)) {
+<label>Danh mục</label>@Html.DropDownListFor(m => m.Category, (SelectList)ViewBag.Categories, "Tất cả")
+<label>Từ số lượng</label>@Html.TextBoxFor(m => m.From, new { type = "text" })
+<label>Đến số lượng</label>@Html.TextBoxFor(m => m.To, new { type = "text" })
+<label>Sắp xếp</label>@Html.DropDownListFor(m => m.Sort, new List<SelectListItem> {
+new SelectListItem { Value = "asc", Text = "Số lượng tăng dần" }, new SelectListItem { Value = "desc", Text = "Số lượng giảm dần" } })
+<button type="submit">Lọc</button> @Html.ActionLink("Bỏ lọc", "Filter")
+}
+@Html.Partial("_Products", Model.Products)

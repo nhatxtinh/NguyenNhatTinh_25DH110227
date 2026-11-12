@@ -1,0 +1,11 @@
+﻿@model Warehouse_25DH110227.Models.ProductForm
+@{ ViewBag.Title = "Thêm sản phẩm"; }
+@Html.ValidationSummary(false)
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+<label>ProductName</label>@Html.TextBoxFor(m => m.ProductName)
+<label>Category</label>@Html.TextBoxFor(m => m.Category)
+<label>Price (ví dụ 75000 hoặc 75000.50)</label>@Html.TextBoxFor(m => m.Price)
+<label>Quantity</label>@Html.TextBoxFor(m => m.Quantity)
+<button type="submit">Thêm sản phẩm</button>
+}

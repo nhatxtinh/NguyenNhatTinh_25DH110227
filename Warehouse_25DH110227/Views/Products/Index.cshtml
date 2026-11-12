@@ -1,0 +1,4 @@
+﻿@model IEnumerable<Warehouse_25DH110227.Models.Product>
+@{ ViewBag.Title = "Danh sách sản phẩm"; }
+<p>Dữ liệu được lấy từ SQL Server qua Entity Framework.</p>
+@Html.Partial("_Products", Model)

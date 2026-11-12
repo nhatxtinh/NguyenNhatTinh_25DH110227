@@ -1,0 +1,10 @@
+﻿@model Warehouse_25DH110227.Models.StockForm
+@{ var action = ViewContext.RouteData.Values["action"].ToString();
+   ViewBag.Title = action == "Damage" ? "Ghi nhận hàng hỏng" : "Nhập kho"; }
+@Html.ValidationSummary(false)
+@using (Html.BeginForm(action, "Products", FormMethod.Post)) {
+@Html.AntiForgeryToken()
+<label>Sản phẩm</label>@Html.DropDownListFor(m => m.ProductID, (IEnumerable<SelectListItem>)ViewBag.Products, "-- Chọn sản phẩm --")
+<label>Số lượng (số nguyên dương)</label>@Html.TextBoxFor(m => m.Amount)
+<button type="submit">Lưu</button>
+}
