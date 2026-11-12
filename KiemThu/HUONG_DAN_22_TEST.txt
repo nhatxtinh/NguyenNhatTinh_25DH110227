@@ -1,0 +1,100 @@
+﻿HƯỚNG DẪN 22 MÃ TEST — CHƯA XÁC NHẬN KẾT QUẢ CHẠY THỰC TẾ
+Nguyễn Nhất Tính — 25DH110227
+
+Trước mỗi mã test, có thể chọn @MaTest trong ChuanBiDuLieuTest.sql và chạy để có đúng dữ liệu đầu vào. Script reset toàn bộ bảng: chỉ dùng trên CSDL bài tập. Nếu dữ liệu đang đúng thì không cần reset. Sau mỗi thao tác, chạy DoiChieuSQL.sql để đối chiếu, KHÔNG chạy reset trước khi chụp kết quả.
+Mỗi mã test cần ảnh riêng trong phiếu. Với nhiều tình huống, dán nhiều ảnh thật trong cùng khung. Các kết quả dưới đây là kỳ vọng từ dữ liệu chuẩn bị, không phải biên bản đã chạy.
+
+TEST 1.1
+Thao tác: Chạy SQL tạo CSDL. Mở Tables > dbo.Products > Columns và SELECT dữ liệu.
+Mong đợi và ảnh cần chụp: CSDL Warehouse_25DH110227; 8 sản phẩm/2 danh mục; Price decimal(18,2), Quantity int. Chụp cấu trúc và dữ liệu.
+
+TEST 1.2
+Thao tác: Mở trang Index, xem header/menu/footer. Mở context, connection string và truy vấn Index để đối chiếu EF.
+Mong đợi và ảnh cần chụp: Nguyễn Nhất Tính, 25DH110227, 10/07/2007; dữ liệu SQL khớp website. Chụp website và đoạn kết nối EF.
+
+TEST 2.1
+Thao tác: Mở danh sách, xem ID 3, 4, 5.
+Mong đợi và ảnh cần chụp: Tồn 0: Hết hàng; 3: Sắp hết hàng; 5: Còn hàng.
+
+TEST 2.2
+Thao tác: ID 5 tồn 5: bấm Xóa rồi Xác nhận xóa; chụp lỗi. ID 3 tồn 0: bấm Xóa, chụp xác nhận rồi xác nhận. Thử /Products/Delete/999999.
+Mong đợi và ảnh cần chụp: ID 5 giữ nguyên; ID 3 bị xóa sau xác nhận. ID không có báo không tìm thấy. Chụp SQL sau thao tác.
+
+TEST 3.1
+Thao tác: Từ=2, Đến=5, để tất cả danh mục.
+Mong đợi và ảnh cần chụp: Các ID 6,4,2,5,8 theo tăng dần. Có cả biên 2 và 5.
+
+TEST 3.2
+Thao tác: Danh mục Văn phòng phẩm Nguyễn Nhất Tính; Từ=2, Đến=5.
+Mong đợi và ảnh cần chụp: Chỉ ID 4 (3) và ID 2 (4).
+
+TEST 3.3
+Thao tác: Bỏ giới hạn, lần lượt chọn giảm dần rồi tăng dần.
+Mong đợi và ảnh cần chụp: Giảm: 10,8,5,5,4,3,2,0. Tăng là thứ tự ngược theo số lượng. Chụp cả hai.
+
+TEST 3.4
+Thao tác: Nhập Từ=8, Đến=3; thử lại Từ=-1, Đến=5. Có thể thử chữ hoặc 1.5.
+Mong đợi và ảnh cần chụp: Báo lỗi, không hiển thị kết quả truy vấn lọc sai. Chụp từng trường hợp.
+
+TEST 4.1
+Thao tác: Nhập kho ID 1, số lượng 5.
+Mong đợi và ảnh cần chụp: 10 + 5 = 15. Chụp thông báo/danh sách và SQL.
+
+TEST 4.2
+Thao tác: Nhập kho ID 1, lần lượt số lượng 0 và -2.
+Mong đợi và ảnh cần chụp: Báo lỗi; ID 1 vẫn tồn 10. Chụp lỗi và SQL.
+
+TEST 4.3
+Thao tác: Sau chuẩn bị mã 4.3, ID 1 tồn 8. Ghi nhận hỏng 5.
+Mong đợi và ảnh cần chụp: Còn 3, trạng thái Sắp hết hàng.
+
+TEST 4.4
+Thao tác: Sau chuẩn bị mã 4.4, ID 1 tồn 5. Ghi nhận hỏng 8.
+Mong đợi và ảnh cần chụp: Báo lỗi; SQL vẫn tồn 5.
+
+TEST 4.5
+Thao tác: Sau chuẩn bị mã 4.5, ID 1 tồn 5. Ghi nhận hỏng 5.
+Mong đợi và ảnh cần chụp: Còn 0, Hết hàng.
+
+TEST 5.1
+Thao tác: Nguồn ID 1 tồn 10, đích ID 2 tồn 4, chuyển 12.
+Mong đợi và ảnh cần chụp: Báo thiếu hàng; SQL vẫn 10 và 4.
+
+TEST 5.2
+Thao tác: Nguồn ID 1 tồn 10, đích ID 2 tồn 4, chuyển 3.
+Mong đợi và ảnh cần chụp: SQL cả hai cùng bằng 7, tổng tồn giữ nguyên.
+
+TEST 5.3
+Thao tác: Chuyển ID 1 sang ID 1 với q=1; rồi ID 1 sang ID 5 với q=1. Mở hàm Transfer trong controller.
+Mong đợi và ảnh cần chụp: Hai trường hợp đều bị từ chối, dữ liệu giữ nguyên. Chụp lỗi, SQL và đoạn BeginTransaction/SaveChanges/Commit.
+
+TEST 6.1
+Thao tác: Create: bỏ tên, điền danh mục/giá/số lượng; tiếp theo điền tên nhưng bỏ danh mục. Thử chỉ dấu cách.
+Mong đợi và ảnh cần chụp: Required báo lỗi; SQL vẫn có 8 bản ghi.
+
+TEST 6.2
+Thao tác: Điền đủ tên/danh mục: thử Price=0, Quantity=3; rồi Price=75000, Quantity=-1.
+Mong đợi và ảnh cần chụp: Báo lỗi, không lưu. Có thể thử số lượng 1.5/chữ/rỗng để kiểm tra kiểu số nguyên.
+
+TEST 6.3
+Thao tác: Tên: Sản phẩm mới Nguyễn Nhất Tính; danh mục: Văn phòng phẩm Nguyễn Nhất Tính; Price=75000; Quantity=3.
+Mong đợi và ảnh cần chụp: Có ID tự tăng 9 sau reset, xuất hiện trong SQL và website, Sắp hết hàng.
+
+TEST 7.1
+Thao tác: Mở Statistics và chạy DoiChieuSQL.sql.
+Mong đợi và ảnh cần chụp: Dữ liệu nền: 8 sản phẩm, tổng tồn 37, 3 sản phẩm sắp hết (ID 2,4,6).
+
+TEST 7.2
+Thao tác: Chuẩn bị mã 7.2: ID 1=2, ID 2=5, các ID khác=0. Mở Statistics.
+Mong đợi và ảnh cần chụp: Tổng tồn 7; 8 sản phẩm; 1 sản phẩm sắp hết.
+
+TEST 7.3
+Thao tác: Chuẩn bị mã 7.3 (hoặc tiếp tục sau 7.2 chưa thay đổi). Nhập thêm 3 cho ID 1, mở lại Statistics.
+Mong đợi và ảnh cần chụp: Tổng tồn 7 lên 10; ID 1 từ 2 lên 5; số sản phẩm sắp hết từ 1 về 0. Không reset giữa nhập và đối chiếu.
+
+KIỂM TRA THÊM CHO CÂU 7
+- Nhập hàng: tổng tồn tăng đúng số nhập.
+- Ghi nhận hỏng: tổng tồn giảm đúng số hỏng.
+- Điều chuyển: tổng tồn không đổi, số sản phẩm sắp hết có thể đổi (A=10, B=4 chuyển 3 thành 7 và 7, giảm một sản phẩm sắp hết).
+- Thêm sản phẩm tồn 3: số sản phẩm +1, tổng tồn +3, số sản phẩm sắp hết +1.
+- Bảng rỗng: các chỉ tiêu đều là 0 (không lỗi Sum NULL).
